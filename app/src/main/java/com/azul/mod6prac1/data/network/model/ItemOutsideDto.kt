@@ -12,10 +12,24 @@ data class ItemOutsideDto(
     @SerializedName("mesa")
     var mesa: String? = null,
 
-    @SerializedName("imagen")
-    var imagen: String? = null,
-
     @SerializedName("nombre")
-    var nombre: String? = null
+    var nombre: String? = null,
+
+    @SerializedName("sellos")
+    var sellos: String? = null,
+
+    @SerializedName("pagoefectivo")
+    var pagoefectivo: String? = null,
+
+    @SerializedName("pagotarjeta")
+    var pagotarjeta: String? = null,
+
+    @SerializedName("transferencia")
+    var transferecia: String? = null,
+
+    @SerializedName("imagen")
+    var imagen: String? = null
+
+
 
 )

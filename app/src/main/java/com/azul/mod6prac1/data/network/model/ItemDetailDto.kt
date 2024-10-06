@@ -14,6 +14,9 @@ data class ItemDetailDto(
     @SerializedName("mesa")
     var mesa: String? = null,
 
+    @SerializedName("nombre")
+    var nombre: String? = null,
+
     @SerializedName("sellos")
     var sellos: String? = null,
 
@@ -27,9 +30,8 @@ data class ItemDetailDto(
     var transferecia: String? = null,
 
     @SerializedName("imagen")
-    var imagen: String? = null,
+    var imagen: String? = null
 
-    @SerializedName("nombre")
-    var nombre: String? = null
+
 
     )
