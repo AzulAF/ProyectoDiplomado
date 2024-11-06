@@ -1,0 +1,11 @@
+<!-- res/drawable/rainbow_gradient.xml -->
+<gradient xmlns:android="http://schemas.android.com/apk/res/android"
+    android:type="linear"
+    android:startColor="#FF0000"
+    android:centerColor="#FFFF00"
+    android:endColor="#00FF00"
+    android:angle="45">
+<item android:color="#00FFFF" android:offset="0.25" /> <!-- Cyan -->
+<item android:color="#0000FF" android:offset="0.5" /> <!-- Blue -->
+<item android:color="#FF00FF" android:offset="0.75" /> <!-- Magenta -->
+    </gradient>

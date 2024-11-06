@@ -3,6 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="snackbar">#9E7817</color>
-    <color name="element_bg">#EEEEEE</color>
+    <color name="element_bg">#FAF0F9</color>
     <color name="red">#FF0000</color>
+    <color name="subtitles">#ECA3C2</color>
+    <color name="coloredframes">#637580</color>
+    <color name="strong_subtitles">#CA4C71</color>
+    <color name="colorButtonDisabled">#A37D81</color>
+    <color name="colorButtonEnabled">#CA4C71</color>
+    <color name="blackProject">#352F2F</color>
 </resources>

@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#770436"
+    android:backgroundTint="@color/element_bg"
+    android:background="#141A31"
     tools:context=".ui.fragments.ArtistDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,7 +42,7 @@
                         android:paddingBottom="10dp"
                         android:textColor="@color/white"
                         android:textSize="25sp"
-                        tools:text="Title" />
+                        tools:text="_" />
 
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/ivImage"
@@ -54,37 +55,38 @@
 
                     <!--Renglon UNO-->
 
-                <LinearLayout
-                    android:baselineAligned="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/tvPisoTEXT"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingBottom="20dp"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        tools:text="Piso: " />
-
-                    <TextView
-                        android:id="@+id/tvPiso"
+                    <LinearLayout
+                        android:baselineAligned="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingBottom="20dp"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        tools:text="NumeroDePiso" />
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/tvPisoTEXT"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="20dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingBottom="20dp"
+                            android:textColor="@color/blackProject"
+                            android:textSize="18sp"
+                            tools:text="@string/piso"
+                            />
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/tvPiso"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="20dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingBottom="20dp"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            tools:text="" />
+
+                    </LinearLayout>
 
                     <!--Renglon dos-->
 
@@ -103,9 +105,9 @@
                             android:paddingTop="20dp"
                             android:paddingRight="20dp"
                             android:paddingBottom="20dp"
-                            android:textColor="@color/white"
+                            android:textColor="@color/blackProject"
                             android:textSize="18sp"
-                            tools:text="Mesa: " />
+                            tools:text="@string/mesa" />
 
                         <TextView
                             android:id="@+id/tvMesa"
@@ -117,7 +119,7 @@
                             android:paddingBottom="20dp"
                             android:textColor="@color/white"
                             android:textSize="18sp"
-                            tools:text="NumeroDeMesa" />
+                            tools:text="_" />
 
                     </LinearLayout>
 
@@ -138,9 +140,9 @@
                             android:paddingTop="20dp"
                             android:paddingRight="20dp"
                             android:paddingBottom="20dp"
-                            android:textColor="@color/white"
+                            android:textColor="@color/blackProject"
                             android:textSize="18sp"
-                            tools:text="Mesa: " />
+                            tools:text="@string/sellos" />
 
                         <TextView
                             android:id="@+id/tvSellos"
@@ -152,7 +154,7 @@
                             android:paddingBottom="20dp"
                             android:textColor="@color/white"
                             android:textSize="18sp"
-                            tools:text="NumeroDeMesa" />
+                            tools:text="_" />
 
                     </LinearLayout>
 
@@ -164,7 +166,7 @@
                         android:paddingTop="20dp"
                         android:paddingRight="20dp"
                         android:paddingBottom="20dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/blackProject"
                         android:textSize="18sp"
                         tools:text="Tipos de pago disponibles: " />
 
@@ -185,9 +187,9 @@
                             android:paddingTop="20dp"
                             android:paddingRight="20dp"
                             android:paddingBottom="20dp"
-                            android:textColor="@color/white"
+                            android:textColor="@color/blackProject"
                             android:textSize="18sp"
-                            tools:text="Efectivo: " />
+                            tools:text="@string/efectivo" />
 
                         <TextView
                             android:id="@+id/tvEfectivo"
@@ -199,7 +201,7 @@
                             android:paddingBottom="20dp"
                             android:textColor="@color/white"
                             android:textSize="18sp"
-                            tools:text="TextoEfectivo" />
+                            tools:text="" />
 
                     </LinearLayout>
 
@@ -220,9 +222,9 @@
                             android:paddingTop="20dp"
                             android:paddingRight="20dp"
                             android:paddingBottom="20dp"
-                            android:textColor="@color/white"
+                            android:textColor="@color/blackProject"
                             android:textSize="18sp"
-                            tools:text="Tarjeta: " />
+                            tools:text="@string/tarjeta" />
 
                         <TextView
                             android:id="@+id/tvTarjeta"
@@ -234,7 +236,7 @@
                             android:paddingBottom="20dp"
                             android:textColor="@color/white"
                             android:textSize="18sp"
-                            tools:text="TextoTarjeta" />
+                            tools:text="" />
 
                     </LinearLayout>
 
@@ -255,9 +257,9 @@
                             android:paddingTop="20dp"
                             android:paddingRight="20dp"
                             android:paddingBottom="20dp"
-                            android:textColor="@color/white"
+                            android:textColor="@color/blackProject"
                             android:textSize="18sp"
-                            tools:text="Transferencia: " />
+                            tools:text="@string/transferencia" />
 
                         <TextView
                             android:id="@+id/tvTransferencia"
@@ -269,7 +271,7 @@
                             android:paddingBottom="20dp"
                             android:textColor="@color/white"
                             android:textSize="18sp"
-                            tools:text="TextoTransferencia" />
+                            tools:text="" />
 
                     </LinearLayout>
 

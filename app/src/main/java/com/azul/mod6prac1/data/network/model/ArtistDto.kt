@@ -1,10 +1,9 @@
 package com.azul.mod6prac1.data.network.model
 
+
 import com.google.gson.annotations.SerializedName
-//Usar este para el ejercicio 2
 
-data class ItemDetailDto(
-
+data class ArtistDto(
     @SerializedName("id")
     var id: String? = null,
 
@@ -34,4 +33,4 @@ data class ItemDetailDto(
 
 
 
-    )
+)

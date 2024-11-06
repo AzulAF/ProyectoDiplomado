@@ -1,8 +1,7 @@
 package com.azul.mod6prac1.data.network.model
-
 import com.google.gson.annotations.SerializedName
 
-data class ItemOutsideDto(
+data class ArtistDetailDto (
     @SerializedName("id")
     var id: String? = null,
 
@@ -29,7 +28,6 @@ data class ItemOutsideDto(
 
     @SerializedName("imagen")
     var imagen: String? = null
-
 
 
 )

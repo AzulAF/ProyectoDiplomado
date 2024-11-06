@@ -69,6 +69,14 @@
     <string name="errorerasingItem">Error while deleting item</string>
     <string name="erasingItem">Item succesfully erased</string>
     <string name="cancelar">Cancel</string>
+
+    <string name="mesa">Mesa numero:</string>
+    <string name="piso">"Piso: "</string>
+    <string name="sellos">Sellos:</string>
+    <string name="tarjeta">Pago por tarjeta:</string>
+    <string name="efectivo">Pago con efectivo:</string>
+    <string name="transferencia">Pago por transferencia:</string>
+
     <string-array name="merchpriority_options">
         <item>Opciones</item>
         <item>ALTA</item>
@@ -85,4 +93,6 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Lista_Artistas">Lista de artistas</string>
+    <string name="Bookmarks">Marcadores</string>
 </resources>

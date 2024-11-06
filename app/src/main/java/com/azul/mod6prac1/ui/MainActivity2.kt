@@ -7,7 +7,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.azul.mod6prac1.R
 import com.azul.mod6prac1.databinding.ActivityMain2Binding
-import com.azul.mod6prac1.ui.fragments.ItemListFragment
+import com.azul.mod6prac1.ui.fragments.ArtistListFragment
+
+//import com.azul.mod6prac1.ui.fragments.ItemListFragment
 
 class MainActivity2 : AppCompatActivity() {
 
@@ -19,7 +21,7 @@ class MainActivity2 : AppCompatActivity() {
         //Mostramos el fragment inicial ItemsListFragment
         if(savedInstanceState == null){
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, ItemListFragment())
+                .replace(R.id.fragment_container, ArtistListFragment())
                 .commit()
         }
     }
