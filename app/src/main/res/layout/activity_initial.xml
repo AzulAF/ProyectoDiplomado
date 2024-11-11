@@ -156,6 +156,21 @@
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_bookmarks" />
 
+
+    <ImageButton
+        android:id="@+id/buttonThird"
+        android:layout_width="66dp"
+        android:layout_height="56dp"
+        android:backgroundTint="@color/general_button_color"
+        android:contentDescription="@string/Bookmarks"
+        app:layout_constraintBottom_toTopOf="@+id/guideline8"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/guideline7"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_bookmarks" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
         android:layout_width="wrap_content"

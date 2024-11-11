@@ -57,7 +57,7 @@ class InitialActivity : AppCompatActivity() {
 
                     //Le pasamos los juegos al recycler view y lo instanciamos
                     binding.rvGallery.apply {
-                        layoutManager = LinearLayoutManager(this@InitialActivity)
+                        layoutManager = LinearLayoutManager(this@InitialActivity, LinearLayoutManager.HORIZONTAL, false)
                         //layoutManager = GridLayoutManager(requireContext(), 3)
                         adapter = ImageGalleryAdapter(images) { image ->
                             // Trigger the action to view the image details

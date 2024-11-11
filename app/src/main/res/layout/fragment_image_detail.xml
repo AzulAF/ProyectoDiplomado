@@ -3,16 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/element_bg"
-    android:background="#CC000000"
+    android:background="#2A000000"
     tools:context=".ui.ImageDetailFragment">
 
     <ImageView
         android:id="@+id/fullscreen_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="566dp"
         android:layout_gravity="center"
-        android:scaleType="fitCenter"
-        android:contentDescription="Zoomed-in image" />
+        android:contentDescription="Zoomed-in image"
+        android:scaleType="fitCenter" />
 
 </FrameLayout>

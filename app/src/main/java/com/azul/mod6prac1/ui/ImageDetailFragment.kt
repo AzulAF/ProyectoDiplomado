@@ -2,19 +2,15 @@ package com.azul.mod6prac1.ui
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.azul.mod6prac1.R
 import com.azul.mod6prac1.application.ItemsDPApp
-import com.azul.mod6prac1.data.ArtistRepository
 import com.azul.mod6prac1.data.ImagesRepository
-import com.azul.mod6prac1.data.network.model.ArtistDetailDto
 import com.azul.mod6prac1.data.network.model.ImageDto
-import com.azul.mod6prac1.databinding.FragmentArtistDetailBinding
 import com.azul.mod6prac1.databinding.FragmentImageDetailBinding
-import com.azul.mod6prac1.ui.fragments.ArtistDetailFragment
 import com.azul.mod6prac1.util.Constants
 import com.bumptech.glide.Glide
 import retrofit2.Call
