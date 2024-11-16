@@ -70,7 +70,7 @@
     <string name="erasingItem">Item succesfully erased</string>
     <string name="cancelar">Cancel</string>
 
-    <string name="mesa">Mesa numero:</string>
+    <string name="mesa">Mesa:</string>
     <string name="piso">"Piso: "</string>
     <string name="sellos">Sellos:</string>
     <string name="tarjeta">Pago por tarjeta:</string>
@@ -95,4 +95,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Lista_Artistas">Lista de artistas</string>
     <string name="Bookmarks">Marcadores</string>
+    <string name="pagosDisponibles">"Tipos de pago disponibles: "</string>
+    <string name="Descripcion">"Descripcion: "</string>
+    <string name="otrospagos">Otras formas de pago:</string>
 </resources>

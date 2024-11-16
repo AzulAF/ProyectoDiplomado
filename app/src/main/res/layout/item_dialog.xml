@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/element_bg"
     android:orientation="vertical">
 
     <ImageView
@@ -13,7 +14,7 @@
         android:layout_marginTop="8dp"
         android:contentDescription="@string/header"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/header3" />
+        app:srcCompat="@drawable/banner" />
 
 <!--  COLUMNA UNO -->
     <LinearLayout
@@ -40,6 +41,7 @@
             app:boxCornerRadiusBottomStart="16dp"
             app:boxCornerRadiusTopEnd="16dp"
             app:boxCornerRadiusTopStart="16dp"
+
             app:startIconDrawable="@drawable/ic_merch"
             tools:ignore="NestedWeights">
 

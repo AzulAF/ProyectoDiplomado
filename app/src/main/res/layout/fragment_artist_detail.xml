@@ -34,24 +34,67 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tvName"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
+                        android:layout_height="83dp"
+                        android:gravity="center"
                         android:paddingBottom="10dp"
-                        android:textColor="@color/white"
+                        android:paddingTop="30dp"
+                        android:textColor="@color/blackProject"
                         android:textSize="25sp"
-                        tools:text="_" />
+                        tools:text="NOMBRE" />
 
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/ivImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_width="380dp"
+                        android:layout_height="186dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
                         app:riv_corner_radius="10dp"
                         tools:src="@mipmap/ic_launcher" />
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintGuide_percent="0.0" />
+
+                        <TextView
+                            android:id="@+id/tvDescripcion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="20dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingBottom="20dp"
+                            android:textColor="@color/white"
+                            android:background="@color/coloredframes"
+                            android:justificationMode="inter_word"
+                            android:textSize="18sp"
+                            app:layout_constraintTop_toTopOf="@id/guideline1"
+                            tools:text="LOrem ipsum" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- RENGLON DESCRIPCION -->
+                    <LinearLayout
+                        android:baselineAligned="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+
+
+                    </LinearLayout>
 
                     <!--Renglon UNO-->
 
@@ -69,6 +112,7 @@
                             android:paddingTop="20dp"
                             android:paddingRight="20dp"
                             android:paddingBottom="20dp"
+                            android:background="@color/subtitles"
                             android:textColor="@color/blackProject"
                             android:textSize="18sp"
                             tools:text="@string/piso"
@@ -78,11 +122,12 @@
                             android:id="@+id/tvPiso"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@color/subtitles"
                             android:paddingLeft="20dp"
                             android:paddingTop="20dp"
                             android:paddingRight="20dp"
                             android:paddingBottom="20dp"
-                            android:textColor="@color/white"
+                            android:textColor="@color/blackProject"
                             android:textSize="18sp"
                             tools:text="" />
 
@@ -106,6 +151,7 @@
                             android:paddingRight="20dp"
                             android:paddingBottom="20dp"
                             android:textColor="@color/blackProject"
+                            android:background="@color/subtitles"
                             android:textSize="18sp"
                             tools:text="@string/mesa" />
 
@@ -117,7 +163,8 @@
                             android:paddingTop="20dp"
                             android:paddingRight="20dp"
                             android:paddingBottom="20dp"
-                            android:textColor="@color/white"
+                            android:textColor="@color/blackProject"
+                            android:background="@color/subtitles"
                             android:textSize="18sp"
                             tools:text="_" />
 
@@ -141,6 +188,7 @@
                             android:paddingRight="20dp"
                             android:paddingBottom="20dp"
                             android:textColor="@color/blackProject"
+                            android:background="@color/subtitles"
                             android:textSize="18sp"
                             tools:text="@string/sellos" />
 
@@ -152,7 +200,8 @@
                             android:paddingTop="20dp"
                             android:paddingRight="20dp"
                             android:paddingBottom="20dp"
-                            android:textColor="@color/white"
+                            android:textColor="@color/blackProject"
+                            android:background="@color/subtitles"
                             android:textSize="18sp"
                             tools:text="_" />
 
@@ -160,15 +209,19 @@
 
                     <TextView
                         android:id="@+id/tvPagosTEXT"
-                        android:layout_width="wrap_content"
+                        android:fontFamily="@font/archivo_bold"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/subtitles"
+                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:paddingLeft="20dp"
                         android:paddingTop="20dp"
                         android:paddingRight="20dp"
                         android:paddingBottom="20dp"
                         android:textColor="@color/blackProject"
                         android:textSize="18sp"
-                        tools:text="Tipos de pago disponibles: " />
+                        tools:text="Tipos de pago disponibles " />
 
                     <!--Renglon PAGOS UNO-->
 
@@ -188,6 +241,7 @@
                             android:paddingRight="20dp"
                             android:paddingBottom="20dp"
                             android:textColor="@color/blackProject"
+                            android:background="@color/subtitles"
                             android:textSize="18sp"
                             tools:text="@string/efectivo" />
 
@@ -199,7 +253,8 @@
                             android:paddingTop="20dp"
                             android:paddingRight="20dp"
                             android:paddingBottom="20dp"
-                            android:textColor="@color/white"
+                            android:textColor="@color/blackProject"
+                            android:background="@color/subtitles"
                             android:textSize="18sp"
                             tools:text="" />
 
@@ -223,6 +278,7 @@
                             android:paddingRight="20dp"
                             android:paddingBottom="20dp"
                             android:textColor="@color/blackProject"
+                            android:background="@color/subtitles"
                             android:textSize="18sp"
                             tools:text="@string/tarjeta" />
 
@@ -234,7 +290,8 @@
                             android:paddingTop="20dp"
                             android:paddingRight="20dp"
                             android:paddingBottom="20dp"
-                            android:textColor="@color/white"
+                            android:textColor="@color/blackProject"
+                            android:background="@color/subtitles"
                             android:textSize="18sp"
                             tools:text="" />
 
@@ -258,8 +315,9 @@
                             android:paddingRight="20dp"
                             android:paddingBottom="20dp"
                             android:textColor="@color/blackProject"
+                            android:background="@color/subtitles"
                             android:textSize="18sp"
-                            tools:text="@string/transferencia" />
+                            tools:text="@string/otrospagos" />
 
                         <TextView
                             android:id="@+id/tvTransferencia"
@@ -269,7 +327,8 @@
                             android:paddingTop="20dp"
                             android:paddingRight="20dp"
                             android:paddingBottom="20dp"
-                            android:textColor="@color/white"
+                            android:textColor="@color/blackProject"
+                            android:background="@color/subtitles"
                             android:textSize="18sp"
                             tools:text="" />
 

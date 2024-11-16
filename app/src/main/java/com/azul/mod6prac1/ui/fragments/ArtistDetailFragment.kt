@@ -75,16 +75,26 @@ class ArtistDetailFragment : Fragment() {
                         tvPisoTEXT.text = binding.root.context.getString(R.string.piso)
                         tvMesaTEXT.text = binding.root.context.getString(R.string.mesa)
                         tvSellosTEXT.text = binding.root.context.getString(R.string.sellos)
-                        tvTarjetaTEXT.text = binding.root.context.getString(R.string.tarjeta)
                         tvEfectivoTEXT.text = binding.root.context.getString(R.string.efectivo)
-                        tvTransferenciaTEXT.text = binding.root.context.getString(R.string.transferencia)
+                        tvTarjetaTEXT.text = binding.root.context.getString(R.string.tarjeta)
+                        tvTransferenciaTEXT.text = binding.root.context.getString(R.string.otrospagos)
+                        tvPagosTEXT.text = binding.root.context.getString(R.string.pagosDisponibles)
 
+                        if(response.body()?.pagotarjeta == "" || response.body()?.pagotarjeta == "NO"){
+                            tvTarjeta.text = "No disponible"
+                        } else{
+                            tvTarjeta.text = response.body()?.pagotarjeta
+                        }
+                        if(response.body()?.transferecia !== "SI"){
+                            tvTransferencia.text = "No disponible"
+                        } else {
+                            tvTransferencia.text = response.body()?.transferecia
+                        }
+                        tvDescripcion.text = response.body()?.descripcion
                         tvPiso.text = response.body()?.piso
                         tvMesa.text = response.body()?.mesa
                         tvSellos.text = response.body()?.sellos
-                        tvTarjeta.text = response.body()?.pagotarjeta
                         tvEfectivo.text = response.body()?.pagoefectivo
-                        tvTransferencia.text = response.body()?.transferecia
                     }
 
 

@@ -11,4 +11,6 @@
     <color name="colorButtonDisabled">#A37D81</color>
     <color name="colorButtonEnabled">#CA4C71</color>
     <color name="blackProject">#352F2F</color>
+    <color name="purpleProject">#393237</color>
+
 </resources>

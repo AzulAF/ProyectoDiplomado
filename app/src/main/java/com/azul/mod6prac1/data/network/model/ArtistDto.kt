@@ -7,11 +7,11 @@ data class ArtistDto(
     @SerializedName("id")
     var id: String? = null,
 
-    @SerializedName("piso")
-    var piso: String? = null,
-
     @SerializedName("mesa")
     var mesa: String? = null,
+
+    @SerializedName("piso")
+    var piso: String? = null,
 
     @SerializedName("nombre")
     var nombre: String? = null,
@@ -25,12 +25,16 @@ data class ArtistDto(
     @SerializedName("pagotarjeta")
     var pagotarjeta: String? = null,
 
-    @SerializedName("transferencia")
+    @SerializedName("pagootro")
     var transferecia: String? = null,
 
     @SerializedName("imagen")
-    var imagen: String? = null
+    var imagen: String? = null,
 
+    @SerializedName("descripcion")
+    var descripcion: String? = null,
 
+    @SerializedName("tags")
+    var fandomtags: String? = null
 
 )

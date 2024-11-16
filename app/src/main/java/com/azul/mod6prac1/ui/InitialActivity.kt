@@ -2,24 +2,15 @@ package com.azul.mod6prac1.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.azul.mod6prac1.R
 import com.azul.mod6prac1.application.ItemsDPApp
-import com.azul.mod6prac1.data.ArtistRepository
 import com.azul.mod6prac1.data.ImagesRepository
-import com.azul.mod6prac1.data.network.model.ArtistDto
 import com.azul.mod6prac1.data.network.model.ImageDto
 import com.azul.mod6prac1.databinding.ActivityInitialBinding
-import com.azul.mod6prac1.ui.adapters.ArtistAdapter
 import com.azul.mod6prac1.ui.adapters.ImageGalleryAdapter
-import com.azul.mod6prac1.ui.fragments.ArtistDetailFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,16 +24,17 @@ class InitialActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityInitialBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+//Marcadores
         binding.buttonFirst.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-
+//Lista de artistas completa
         binding.buttonSecond.setOnClickListener {
-            val intent = Intent(this, MainActivity2::class.java)
+            val intent = Intent(this, ArtistListsActivity::class.java)
             startActivity(intent)
         }
+
 
         repository = (this.application as ItemsDPApp).repositoryMaps
         //Para apiary

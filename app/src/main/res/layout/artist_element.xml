@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/subtitles"
+    android:background="@color/purpleProject"
     android:padding="8dp">
 
     <androidx.cardview.widget.CardView
@@ -115,40 +115,6 @@
                 app:layout_constraintTop_toBottomOf="@id/tvMerch"
                 app:layout_constraintVertical_bias="0.189"
                 tools:text="@string/cost" />
-
-            <TextView
-                android:id="@+id/tvMerchType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="11dp"
-                android:layout_marginEnd="8dp"
-                android:textSize="14sp"
-                android:textColor="@color/blackProject"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@id/ivIcon"
-                app:layout_constraintTop_toBottomOf="@+id/tvArtist"
-                app:layout_constraintVertical_bias="0.0"
-                tools:text="@string/merch_type" />
-
-            <TextView
-                android:id="@+id/tvMerchPriority"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="sans-serif-black"
-                android:textSize="14sp"
-                android:textColor="@color/blackProject"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/tvMerch"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.164"
-                tools:text="@string/merch_priority_list" />
-
 
 
             <TextView

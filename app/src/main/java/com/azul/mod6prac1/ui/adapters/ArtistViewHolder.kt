@@ -21,8 +21,6 @@ class ArtistViewHolder(
             tvArtist.visibility = View.INVISIBLE
             tvCost.visibility = View.INVISIBLE
             tvTag.text = binding.root.context.getString(R.string.piso)+ item.piso
-            tvMerchType.visibility = View.INVISIBLE
-            tvMerchPriority.visibility = View.INVISIBLE
         }
         Glide.with(binding.root.context).load(item.imagen).into(binding.ivIcon)
 

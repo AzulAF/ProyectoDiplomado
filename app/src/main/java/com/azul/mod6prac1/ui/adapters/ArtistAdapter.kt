@@ -6,8 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.azul.mod6prac1.data.network.model.ArtistDto
 import com.azul.mod6prac1.databinding.ArtistElementBinding
 
-
-
 class ArtistAdapter(
     private val artists: MutableList<ArtistDto>,
     private val onArtistClicked: (ArtistDto) -> Unit
@@ -25,6 +23,8 @@ class ArtistAdapter(
     }
 
     override fun getItemCount(): Int = displayedArtists.size
+
+
 
     override fun onBindViewHolder(holder: ArtistViewHolder, position: Int) {
         val artist = displayedArtists[position]

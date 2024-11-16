@@ -7,5 +7,8 @@ data class ImageDto(
     var id: String? = null,
 
     @SerializedName("imagen")
-    var imagen: String? = null
+    var imagen: String? = null,
+
+    @SerializedName("tipo")
+    var tipo: String? = null
 )

@@ -1,17 +1,14 @@
 package com.azul.mod6prac1.ui
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.azul.mod6prac1.R
 import com.azul.mod6prac1.databinding.ActivityMain2Binding
 import com.azul.mod6prac1.ui.fragments.ArtistListFragment
 
 //import com.azul.mod6prac1.ui.fragments.ItemListFragment
 
-class MainActivity2 : AppCompatActivity() {
+class ArtistListsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMain2Binding
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -27,7 +27,13 @@ data class ArtistDetailDto (
     var transferecia: String? = null,
 
     @SerializedName("imagen")
-    var imagen: String? = null
+    var imagen: String? = null,
+
+    @SerializedName("descripcion")
+    var descripcion: String? = null,
+
+    @SerializedName("tags")
+    var fandomtags: String? = null
 
 
 )
