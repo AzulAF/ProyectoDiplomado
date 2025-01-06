@@ -6,34 +6,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.azul.mod6prac1.R
 import com.azul.mod6prac1.application.ItemsDPApp
 import com.azul.mod6prac1.data.ImagesRepository
 import com.azul.mod6prac1.data.network.model.ImageDto
 import com.azul.mod6prac1.databinding.FragmentImageDetailBinding
+import com.azul.mod6prac1.ui.adapters.ImageGalleryAdapter
 import com.azul.mod6prac1.util.Constants
 import com.bumptech.glide.Glide
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-private const val IMAGE_ID = "image_id"
-
-
 class ImageDetailFragment : Fragment() {
-
-    private var imageId: String? = null
-
-    private var _binding: FragmentImageDetailBinding? = null
-    private val binding get()  = _binding!!
-
-    private lateinit var repository: ImagesRepository
+    private lateinit var images: List<ImageDto>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let { args->
-            imageId = args.getString(IMAGE_ID)
-            Log.d(Constants.LOGTAG, "Id recibido de imagen $imageId")
+        arguments?.let {
+            images = it.getParcelableArrayList(ARG_IMAGES) ?: emptyList()
         }
     }
 
@@ -41,56 +34,24 @@ class ImageDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        _binding = FragmentImageDetailBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+        val view = inflater.inflate(R.layout.fragment_image_detail, container, false)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        //Obteniendo la instancia al repositorio
-        repository = (requireActivity().application as ItemsDPApp).repositoryMaps
-
-        imageId?.let{ id ->
-            //Hago la llamada al endpoint para consumir los detalles del juego
-
-            //val call: Call<GameDetailDto> = repository.getGameDetail(id)
-
-            //Para apiary
-            val call: Call<ImageDto> = repository.getImagesDetailApiary(id)
-
-            call.enqueue(object: Callback<ImageDto> {
-                override fun onResponse(p0: Call<ImageDto>, response: Response<ImageDto>) {
-                    binding.apply {
-                        Glide.with(requireActivity())
-                            .load(response.body()?.imagen)
-                            .into(fullscreenImage)
-                    }
-                }
-
-                override fun onFailure(p0: Call<ImageDto>, p1: Throwable) {
-                    Log.d(Constants.LOGTAG, "Error de conexión")
-                }
-
-            })
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = ImageGalleryAdapter(images) { image ->
+            // Aquí puedes agregar funcionalidad para el click en una imagen
         }
-    }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+        return view
     }
 
     companion object {
-        @JvmStatic
-        fun newInstance(imageId: String) =
-            ImageDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(IMAGE_ID, imageId)
-                }
+        private const val ARG_IMAGES = "images"
+
+        fun newInstance(images: List<ImageDto>) = ImageDetailFragment().apply {
+            arguments = Bundle().apply {
+                putParcelableArrayList(ARG_IMAGES, ArrayList(images))
             }
+        }
     }
-
-
 }

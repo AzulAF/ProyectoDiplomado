@@ -25,6 +25,7 @@ class ArtistListFragment  : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var repository: ArtistRepository
+    private lateinit var artistAdapter: ArtistAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

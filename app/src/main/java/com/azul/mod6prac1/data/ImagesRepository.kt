@@ -6,6 +6,10 @@ import com.azul.mod6prac1.data.network.model.ArtistDto
 import com.azul.mod6prac1.data.network.model.ImageDto
 import retrofit2.Call
 import retrofit2.Retrofit
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
+import retrofit2.http.Url
 
 class ImagesRepository(private val retrofit: Retrofit) {
 
@@ -15,4 +19,8 @@ class ImagesRepository(private val retrofit: Retrofit) {
 
     fun getImagesDetailApiary(id: String?): Call<ImageDto> =
         gamesApi.getImagesDetailApiary(id)
+
+    fun getImagesFromUrl(url: String): Call<MutableList<ImageDto>> =
+        gamesApi.getImagesFromUrl(url)
+
 }

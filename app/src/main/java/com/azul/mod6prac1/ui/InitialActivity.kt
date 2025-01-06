@@ -11,6 +11,7 @@ import com.azul.mod6prac1.data.ImagesRepository
 import com.azul.mod6prac1.data.network.model.ImageDto
 import com.azul.mod6prac1.databinding.ActivityInitialBinding
 import com.azul.mod6prac1.ui.adapters.ImageGalleryAdapter
+import com.azul.mod6prac1.ui.adapters.ImageGalleryAdapterBasic
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,6 +35,19 @@ class InitialActivity : AppCompatActivity() {
             val intent = Intent(this, ArtistListsActivity::class.java)
             startActivity(intent)
         }
+        val linksMap = mapOf(
+            binding.imageButtonAvisos to "https://private-a4ba8-dadmtarea.apiary-mock.com/event/maps",
+            binding.imageButtonTalleres to "https://example.com/json_talleres",
+            binding.imageButtonMap to "https://example.com/json_map",
+            binding.imageButtonInvitados to "https://example.com/json_invitados",
+            binding.imageButtonNoticias to "https://example.com/json_noticias",
+            binding.imageButtonHorarios to "https://example.com/json_horarios"
+        )
+        linksMap.forEach { (button, link) ->
+            button.setOnClickListener {
+                fetchAndDisplayData(link)
+            }
+        }
 
 
         repository = (this.application as ItemsDPApp).repositoryMaps
@@ -51,13 +65,13 @@ class InitialActivity : AppCompatActivity() {
                     binding.rvGallery.apply {
                         layoutManager = LinearLayoutManager(this@InitialActivity, LinearLayoutManager.HORIZONTAL, false)
                         //layoutManager = GridLayoutManager(requireContext(), 3)
-                        adapter = ImageGalleryAdapter(images) { image ->
+                        adapter = ImageGalleryAdapterBasic(images) { image ->
                             // Trigger the action to view the image details
                             image.id?.let { id ->
-                                supportFragmentManager.beginTransaction()
-                                    .replace(R.id.fragment_container, ImageDetailFragment.newInstance(id))
-                                    .addToBackStack(null)
-                                    .commit()
+//                                supportFragmentManager.beginTransaction()
+//                                    .replace(R.id.fragment_container, ImageDetailFragment.newInstance(id))
+//                                    .addToBackStack(null)
+//                                    .commit()
                             }
                         }
                     }
@@ -65,6 +79,31 @@ class InitialActivity : AppCompatActivity() {
             }
             override fun onFailure(p0: Call<MutableList<ImageDto>>, p1: Throwable) {
                 Toast.makeText(this@InitialActivity,"Error, no hay conexion",Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun fetchAndDisplayData(link: String) {
+        val call: Call<MutableList<ImageDto>> = repository.getImagesFromUrl(link) // Modifica el repositorio para aceptar URLs dinámicas
+
+        call.enqueue(object : Callback<MutableList<ImageDto>> {
+            override fun onResponse(
+                call: Call<MutableList<ImageDto>>,
+                response: Response<MutableList<ImageDto>>
+            ) {
+                response.body()?.let { images ->
+                    // Navegar al fragmento con la lista de imágenes
+                    val fragment = ImageDetailFragment.newInstance(images)
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment)
+                        .addToBackStack(null)
+                        .commit()
+
+                }
+            }
+
+            override fun onFailure(call: Call<MutableList<ImageDto>>, t: Throwable) {
+                Toast.makeText(this@InitialActivity, "Error al cargar los datos", Toast.LENGTH_SHORT).show()
             }
         })
     }

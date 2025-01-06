@@ -6,12 +6,17 @@
     android:background="#2A000000"
     tools:context=".ui.ImageDetailFragment">
 
-    <ImageView
-        android:id="@+id/fullscreen_image"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="566dp"
-        android:layout_gravity="center"
-        android:contentDescription="Zoomed-in image"
-        android:scaleType="fitCenter" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
 
 </FrameLayout>

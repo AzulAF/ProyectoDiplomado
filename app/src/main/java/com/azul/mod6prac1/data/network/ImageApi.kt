@@ -18,4 +18,7 @@ interface ImageApi {
     fun getImagesDetailApiary(
         @Path("id") id: String?
     ): Call<ImageDto>
+
+    @GET
+    fun getImagesFromUrl(@Url url: String): Call<MutableList<ImageDto>>
 }
