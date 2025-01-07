@@ -5,16 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.azul.mod6prac1.data.network.model.ArtistDto
 import com.azul.mod6prac1.databinding.ArtistElementBinding
-
 class ArtistAdapter(
     private val artists: MutableList<ArtistDto>,
     private val onArtistClicked: (ArtistDto) -> Unit
 ) : RecyclerView.Adapter<ArtistViewHolder>() {
 
-    // Original list (unfiltered)
+    // Lista original (sin filtrar)
     private val originalArtists: List<ArtistDto> = artists.toList()
 
-    // List to display in RecyclerView, initially showing all artists
+    // Lista mostrada en el RecyclerView
     private val displayedArtists: MutableList<ArtistDto> = artists.toMutableList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtistViewHolder {
@@ -24,30 +23,29 @@ class ArtistAdapter(
 
     override fun getItemCount(): Int = displayedArtists.size
 
-
-
     override fun onBindViewHolder(holder: ArtistViewHolder, position: Int) {
         val artist = displayedArtists[position]
-
         holder.bind(artist)
 
         holder.itemView.setOnClickListener {
-            // Handle artist item click
             onArtistClicked(artist)
         }
     }
 
-    // Method to filter list by mesa == 1
-    fun showFilteredList() {
-        displayedArtists.clear()
-        displayedArtists.addAll(originalArtists.filter { it.mesa == "1" })
-        notifyDataSetChanged()
+    // Método para filtrar la lista
+    fun updateList(newList: List<ArtistDto>) {
+        displayedArtists.clear() // Limpiar la lista mostrada
+        displayedArtists.addAll(newList) // Añadir la lista filtrada
+        notifyDataSetChanged() // Notificar cambios al adaptador
     }
 
-    // Method to show the original (unfiltered) list
+    // Método para mostrar la lista original completa
     fun showOriginalList() {
-        displayedArtists.clear()
-        displayedArtists.addAll(originalArtists)
-        notifyDataSetChanged()
+        updateList(originalArtists) // Usa updateList para restaurar la lista original
+    }
+
+    // Método para obtener la lista original (opcional, si necesitas acceso en el Fragment)
+    fun getOriginalList(): List<ArtistDto> {
+        return originalArtists
     }
 }

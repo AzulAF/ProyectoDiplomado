@@ -1,6 +1,8 @@
 package com.azul.mod6prac1.ui.fragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,136 +21,159 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ArtistListFragment  : Fragment() {
+class ArtistListFragment : Fragment() {
 
     private var _binding: FragmentArtistListBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var repository: ArtistRepository
     private lateinit var artistAdapter: ArtistAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private var artistsList: MutableList<ArtistDto> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentArtistListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //binding.titleListado.visibility = View.GONE
-        //Obteniendo la instancia al repositorio
+
+        // Inicializar repositorio
         repository = (requireActivity().application as ItemsDPApp).repository2
 
-        //val call: Call<MutableList<GameDto>> = repository.getGames("cm/games/games_list.php")
+        // Configuración inicial del adaptador con una lista vacía
+        artistAdapter = ArtistAdapter(mutableListOf()) { artist ->
+            artist.id?.let { id ->
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, ArtistDetailFragment.newInstance(id))
+                    .addToBackStack(null)
+                    .commit()
+            }
+        }
 
-        // Opciones para el SpinnerTipo
-        val opcionesTipo = listOf("Tipos de pago", "Piso", "Sellos", "Tags")
+        binding.rvItems.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvItems.adapter = artistAdapter
+
+        // Configurar los filtros y spinners
+        setupFilters()
+
+        // Llamar a la API
+        fetchArtistsFromApi()
+    }
+
+    private fun setupFilters() {
+        val opcionesTipo = listOf("Piso", "Sellos")
         val adapterTipo = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, opcionesTipo)
         adapterTipo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerTipo.adapter = adapterTipo
 
-        // Configuración del comportamiento del SpinnerTipo
         binding.spinnerTipo.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val seleccion = opcionesTipo[position]
                 actualizarOpcionesEspecial(seleccion)
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // No hacer nada
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
         binding.spinnerEspecial.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                val textoSeleccionado = parent?.getItemAtPosition(position).toString()
-
-                // Realiza cualquier acción con el texto seleccionado
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                filtrarLista()
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // No hacer nada
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
+        binding.editTextNombre.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                filtrarLista()
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
 
+        binding.editTextNumber.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                filtrarLista()
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
 
-        //Para apiary
+    private fun fetchArtistsFromApi() {
         val call: Call<MutableList<ArtistDto>> = repository.getArtistsApiary()
-
-        call.enqueue(object: Callback<MutableList<ArtistDto>> {
-            override fun onResponse(
-                p0: Call<MutableList<ArtistDto>>,
-                response: Response<MutableList<ArtistDto>>
-            ) {
+        call.enqueue(object : Callback<MutableList<ArtistDto>> {
+            override fun onResponse(call: Call<MutableList<ArtistDto>>, response: Response<MutableList<ArtistDto>>) {
                 binding.pbLoading.visibility = View.GONE
-
-
-
-                response.body()?.let{ artists ->
-
-                    //Le pasamos los juegos al recycler view y lo instanciamos
-                    binding.rvItems.apply {
-                        layoutManager = LinearLayoutManager(requireContext())
-                        //layoutManager = GridLayoutManager(requireContext(), 3)
-                        adapter = ArtistAdapter(artists){ artist ->
-                            //Aquí realizamos la acción para ir a ver los detalles del juego
-                            artist.id?.let{ id ->
-                                requireActivity().supportFragmentManager.beginTransaction()
-                                    .replace(R.id.fragment_container, ArtistDetailFragment.newInstance(id))
-                                    .addToBackStack(null)
-                                    .commit()
-                            }
-                        }
-
-                    }
-
+                response.body()?.let { artists ->
+                    artistsList = artists.toMutableList()
+                    artistAdapter.updateList(artistsList) // Actualizar la lista completa en el adaptador
                 }
             }
 
-            override fun onFailure(p0: Call<MutableList<ArtistDto>>, p1: Throwable) {
+            override fun onFailure(call: Call<MutableList<ArtistDto>>, t: Throwable) {
                 Toast.makeText(
                     requireContext(),
                     "Error: No hay conexión disponible",
                     Toast.LENGTH_SHORT
                 ).show()
                 binding.pbLoading.visibility = View.GONE
-                binding.titleListado.visibility = View.VISIBLE
             }
-
         })
     }
 
     private fun actualizarOpcionesEspecial(seleccion: String) {
         val opcionesEspecial = when (seleccion) {
-            "Tipos de pago" -> listOf("Efectivo", "Tarjeta", "Otros")
             "Piso" -> listOf("1", "2")
-            "Sellos" -> listOf("Participante", "No participante")
-            "Tags" -> listOf("Alien Stage", "SAVE")
+            "Sellos" -> listOf("SI", "NO")
             else -> emptyList()
         }
 
         val adapterEspecial = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, opcionesEspecial)
         adapterEspecial.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerEspecial.adapter = adapterEspecial
+    }
+
+    private fun filtrarLista() {
+        val tipoSeleccionado = binding.spinnerTipo.selectedItem?.toString() ?: ""
+        val especialSeleccionado = binding.spinnerEspecial.selectedItem?.toString() ?: ""
+        val nombre = binding.editTextNombre.text.toString()
+        val numero = binding.editTextNumber.text.toString()
+
+        // Si no hay filtros activos, mostrar la lista completa
+        if (tipoSeleccionado.isEmpty() && especialSeleccionado.isEmpty() &&
+            nombre.isEmpty() && numero.isEmpty()
+        ) {
+            artistAdapter.updateList(artistsList)
+            return
+        }
+
+        // Filtrar la lista según los criterios seleccionados
+        val filteredList = artistsList.filter { artist ->
+            var coincide = true
+
+            if (tipoSeleccionado == "Piso") {
+                coincide = coincide && artist.piso == especialSeleccionado
+            } else if (tipoSeleccionado == "Sellos") {
+                coincide = coincide && artist.sellos == especialSeleccionado
+            }
+
+            if (nombre.isNotEmpty()) {
+                coincide = coincide && artist.nombre!!.contains(nombre, ignoreCase = true)
+            }
+
+            if (numero.isNotEmpty()) {
+                coincide = coincide && artist.mesa == numero
+            }
+
+            coincide
+        }
+
+        artistAdapter.updateList(filteredList)
     }
 
     override fun onDestroy() {

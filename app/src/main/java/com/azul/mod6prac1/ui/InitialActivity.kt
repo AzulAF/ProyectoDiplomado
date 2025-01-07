@@ -36,12 +36,12 @@ class InitialActivity : AppCompatActivity() {
             startActivity(intent)
         }
         val linksMap = mapOf(
-            binding.imageButtonAvisos to "https://private-a4ba8-dadmtarea.apiary-mock.com/event/maps",
-            binding.imageButtonTalleres to "https://example.com/json_talleres",
-            binding.imageButtonMap to "https://example.com/json_map",
-            binding.imageButtonInvitados to "https://example.com/json_invitados",
-            binding.imageButtonNoticias to "https://example.com/json_noticias",
-            binding.imageButtonHorarios to "https://example.com/json_horarios"
+            binding.imageButtonAvisos to "https://private-a4ba8-dadmtarea.apiary-mock.com/event/avisos",
+            binding.imageButtonTalleres to "https://private-a4ba8-dadmtarea.apiary-mock.com/event/talleres",
+            binding.imageButtonMap to "https://private-a4ba8-dadmtarea.apiary-mock.com/event/mapas2",
+            binding.imageButtonInvitados to "https://private-a4ba8-dadmtarea.apiary-mock.com/event/invitados",
+            binding.imageButtonNoticias to "https://private-a4ba8-dadmtarea.apiary-mock.com/event/noticias",
+            binding.imageButtonHorarios to "https://private-a4ba8-dadmtarea.apiary-mock.com/event/horarios"
         )
         linksMap.forEach { (button, link) ->
             button.setOnClickListener {
