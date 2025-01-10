@@ -1,5 +1,7 @@
 package com.azul.mod6prac1.ui
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -10,12 +12,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.azul.mod6prac1.R
 import com.azul.mod6prac1.application.ItemsDPApp
 import com.azul.mod6prac1.data.ItemRepository
 import com.azul.mod6prac1.data.db.model.ItemEntity
+import com.azul.mod6prac1.data.network.NetworkUtils
 import com.azul.mod6prac1.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 
@@ -31,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        checkNetworkAndNotify(this)
         repository = (application as ItemsDPApp).repository
 
         itemsAdapter = ItemAdapter{ selectedItem->
@@ -89,6 +93,20 @@ class MainActivity : AppCompatActivity() {
             itemsAdapter.updateList(items)
         }
     }
+
+
+    fun checkNetworkAndNotify(context: Context) {
+        if (!NetworkUtils.isNetworkAvailable(context)) {
+            Toast.makeText(context, "No tienes conexión a Internet.", Toast.LENGTH_LONG).show()
+        } else if (NetworkUtils.isUsingMobileData(context)) {
+            Snackbar.make(
+                (context as Activity).findViewById(android.R.id.content),
+                "Estás utilizando datos móviles.",
+                Snackbar.LENGTH_LONG
+            ).show()
+        }
+    }
+
 
 
 

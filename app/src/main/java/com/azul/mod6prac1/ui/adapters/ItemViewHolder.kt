@@ -21,7 +21,6 @@ class ItemViewHolder (
             tvMerchPriority.text = item.merchPriority
             Log.d("SpinnerSelectionIMAGE", "Selected option: ${item.merchPriority}")
             val imageResource = when (item.merchPriority){
-
                 "ALTA" -> R.drawable.priority1
                 "MEDIA"-> R.drawable.priority2
                 "BAJA" -> R.drawable.priority3

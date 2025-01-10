@@ -14,9 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.azul.mod6prac1.R
 import com.azul.mod6prac1.application.ItemsDPApp
 import com.azul.mod6prac1.data.ArtistRepository
+import com.azul.mod6prac1.data.network.NetworkUtils
 import com.azul.mod6prac1.data.network.model.ArtistDto
 import com.azul.mod6prac1.databinding.FragmentArtistListBinding
 import com.azul.mod6prac1.ui.adapters.ArtistAdapter
+import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,6 +42,7 @@ class ArtistListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        checkNetworkAndNotify(this)
 
         // Inicializar repositorio
         repository = (requireActivity().application as ItemsDPApp).repository2
@@ -180,4 +183,20 @@ class ArtistListFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
+    fun checkNetworkAndNotify(fragment: Fragment) {
+        val context = fragment.requireContext()
+        if (!NetworkUtils.isNetworkAvailable(context)) {
+            Toast.makeText(context, "No tienes conexión a Internet.", Toast.LENGTH_LONG).show()
+        } else if (NetworkUtils.isUsingMobileData(context)) {
+            Snackbar.make(
+                fragment.requireView(), // Vista raíz del fragmento
+                "Estás utilizando datos móviles.",
+                Snackbar.LENGTH_LONG
+            ).show()
+        }
+    }
+
+
+
 }

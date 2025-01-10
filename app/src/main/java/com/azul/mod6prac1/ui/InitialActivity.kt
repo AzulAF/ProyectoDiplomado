@@ -1,5 +1,7 @@
 package com.azul.mod6prac1.ui
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -8,10 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.azul.mod6prac1.R
 import com.azul.mod6prac1.application.ItemsDPApp
 import com.azul.mod6prac1.data.ImagesRepository
+import com.azul.mod6prac1.data.network.NetworkUtils
 import com.azul.mod6prac1.data.network.model.ImageDto
 import com.azul.mod6prac1.databinding.ActivityInitialBinding
-import com.azul.mod6prac1.ui.adapters.ImageGalleryAdapter
 import com.azul.mod6prac1.ui.adapters.ImageGalleryAdapterBasic
+import com.azul.mod6prac1.ui.fragments.ImageDetailFragment
+import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,6 +26,7 @@ class InitialActivity : AppCompatActivity() {
     private lateinit var repository: ImagesRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        checkNetworkAndNotify(this)
         super.onCreate(savedInstanceState)
         binding = ActivityInitialBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -107,4 +112,17 @@ class InitialActivity : AppCompatActivity() {
             }
         })
     }
+
+    fun checkNetworkAndNotify(context: Context) {
+        if (!NetworkUtils.isNetworkAvailable(context)) {
+            Toast.makeText(context, "No tienes conexión a Internet.", Toast.LENGTH_LONG).show()
+        } else if (NetworkUtils.isUsingMobileData(context)) {
+            Snackbar.make(
+                (context as Activity).findViewById(android.R.id.content),
+                "Estás utilizando datos móviles.",
+                Snackbar.LENGTH_LONG
+            ).show()
+        }
+    }
+
 }

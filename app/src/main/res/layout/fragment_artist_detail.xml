@@ -44,7 +44,7 @@
                         android:paddingTop="30dp"
                         android:textColor="@color/blackProject"
                         android:textSize="25sp"
-                        tools:text="NOMBRE" />
+                        tools:text="@string/name" />
 
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/ivImage"
@@ -221,7 +221,7 @@
                         android:paddingBottom="20dp"
                         android:textColor="@color/blackProject"
                         android:textSize="18sp"
-                        tools:text="Tipos de pago disponibles " />
+                        tools:text="@string/tipopagos" />
 
                     <!--Renglon PAGOS UNO-->
 
