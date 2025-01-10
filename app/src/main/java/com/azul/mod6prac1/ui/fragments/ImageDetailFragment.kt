@@ -1,30 +1,25 @@
-package com.azul.mod6prac1.ui
+package com.azul.mod6prac1.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.azul.mod6prac1.R
-import com.azul.mod6prac1.application.ItemsDPApp
-import com.azul.mod6prac1.data.ImagesRepository
+import com.azul.mod6prac1.data.network.NetworkUtils
 import com.azul.mod6prac1.data.network.model.ImageDto
-import com.azul.mod6prac1.databinding.FragmentImageDetailBinding
 import com.azul.mod6prac1.ui.adapters.ImageGalleryAdapter
-import com.azul.mod6prac1.util.Constants
-import com.bumptech.glide.Glide
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.google.android.material.snackbar.Snackbar
 
 class ImageDetailFragment : Fragment() {
     private lateinit var images: List<ImageDto>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        checkNetworkAndNotify(this)
         arguments?.let {
             images = it.getParcelableArrayList(ARG_IMAGES) ?: emptyList()
         }
@@ -54,4 +49,18 @@ class ImageDetailFragment : Fragment() {
             }
         }
     }
+
+    fun checkNetworkAndNotify(fragment: Fragment) {
+        val context = fragment.requireContext()
+        if (!NetworkUtils.isNetworkAvailable(context)) {
+            Toast.makeText(context, "No tienes conexión a Internet.", Toast.LENGTH_LONG).show()
+        } else if (NetworkUtils.isUsingMobileData(context)) {
+            Snackbar.make(
+                fragment.requireView(), // Vista raíz del fragmento
+                "Estás utilizando datos móviles.",
+                Snackbar.LENGTH_LONG
+            ).show()
+        }
+    }
+
 }

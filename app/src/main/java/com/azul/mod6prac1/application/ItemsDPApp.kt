@@ -26,26 +26,6 @@ class ItemsDPApp: Application() {
         ImagesRepository(retrofit)
     }
 
-    val repositoryNoticias by lazy {
-        ImagesRepository(retrofit)
-    }
-
-    val repositoryAvisos by lazy {
-        ImagesRepository(retrofit)
-    }
-    val repositoryTalleres by lazy {
-        ImagesRepository(retrofit)
-    }
-    val repositoryHorarios by lazy {
-        ImagesRepository(retrofit)
-    }
-    val repositoryInvitados by lazy {
-        ImagesRepository(retrofit)
-    }
-    val repositoryMapas2 by lazy {
-        ImagesRepository(retrofit)
-    }
-
 
     private val retrofit by lazy{
         RetrofitHelper().getRetrofit()

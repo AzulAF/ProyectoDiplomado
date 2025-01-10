@@ -5,14 +5,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.azul.mod6prac1.R
 import com.azul.mod6prac1.application.ItemsDPApp
 import com.azul.mod6prac1.data.ArtistRepository
+import com.azul.mod6prac1.data.network.NetworkUtils
 import com.azul.mod6prac1.data.network.model.ArtistDetailDto
 import com.azul.mod6prac1.databinding.FragmentArtistDetailBinding
 import com.azul.mod6prac1.util.Constants
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,6 +33,7 @@ class ArtistDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         arguments?.let { args ->
             artistId = args.getString(ARTIST_ID)
             Log.d(Constants.LOGTAG, "Id recibido $artistId")
@@ -48,7 +52,7 @@ class ArtistDetailFragment : Fragment() {
     //Se manda llamar ya cuando el fragment es visible en pantalla
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        checkNetworkAndNotify(this)
         //Obteniendo la instancia al repositorio
         repository = (requireActivity().application as ItemsDPApp).repository2
 
@@ -123,5 +127,18 @@ class ArtistDetailFragment : Fragment() {
                 }
             }
     }
+    fun checkNetworkAndNotify(fragment: Fragment) {
+        val context = fragment.requireContext()
+        if (!NetworkUtils.isNetworkAvailable(context)) {
+            Toast.makeText(context, "No tienes conexión a Internet.", Toast.LENGTH_LONG).show()
+        } else if (NetworkUtils.isUsingMobileData(context)) {
+            Snackbar.make(
+                fragment.requireView(), // Vista raíz del fragmento
+                "Estás utilizando datos móviles.",
+                Snackbar.LENGTH_LONG
+            ).show()
+        }
+    }
+
 
 }

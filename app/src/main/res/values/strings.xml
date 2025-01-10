@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mod6Prac1</string>
+    <string name="app_name">EventGuide</string>
     <string name="genre">Género</string>
     <string name="game">Juego</string>
     <string name="confirm">Confirmación</string>
@@ -43,14 +43,14 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-    <string name="no_data">There is no data available</string>
-    <string name="merch_name">Merch Name</string>
-    <string name="merch_priority">Priority</string>
+    <string name="no_data">No hay datos disponibles</string>
+    <string name="merch_name">Nombre merch</string>
+    <string name="merch_priority">Prioridad</string>
     <string name="merch_tag">Tag</string>
-    <string name="merch_type">Type Dropdown</string>
+    <string name="merch_type">Tipo</string>
     <string name="confirm_item">Desea eleminar el item %1$s?</string>
     <string name="texto_item">Item</string>
-    <string name="add_element">Add Element</string>
+    <string name="add_element">Añadir elemento</string>
     <string name="header">Header</string>
     <string name="merch">Merch</string>
     <string name="artist">Artist Name</string>
@@ -60,15 +60,15 @@
     <string name="imagen">Imagen</string>
     <string name="merch_priority_list">Priority DropDown</string>
     <string name="options">Opciones</string>
-    <string name="save">SAVE</string>
-    <string name="cancel">CANCEL</string>
-    <string name="savedItem">Item safely saved</string>
-    <string name="errorsavedItem">Error while saving Item</string>
-    <string name="updatedItem">Safely updated item</string>
-    <string name="errorupdatedItem">Error while updating item</string>
-    <string name="errorerasingItem">Error while deleting item</string>
-    <string name="erasingItem">Item succesfully erased</string>
-    <string name="cancelar">Cancel</string>
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="savedItem">Guardado exitosamente</string>
+    <string name="errorsavedItem">Error al guardar</string>
+    <string name="updatedItem">Actualizado existosamente</string>
+    <string name="errorupdatedItem">Error al actualizar</string>
+    <string name="errorerasingItem">Error al eliminar</string>
+    <string name="erasingItem">Eliminado exitosamente</string>
+    <string name="cancelar">Cancelar</string>
 
     <string name="mesa">Mesa:</string>
     <string name="piso">"Piso: "</string>
@@ -98,4 +98,21 @@
     <string name="pagosDisponibles">"Tipos de pago disponibles: "</string>
     <string name="Descripcion">"Descripcion: "</string>
     <string name="otrospagos">Otras formas de pago:</string>
+    <string name="mapa">Mapa</string>
+    <string name="avisos">Avisos</string>
+    <string name="invitados">Invitados</string>
+    <string name="talleres">Talleres</string>
+    <string name="noticias">Noticias</string>
+    <string name="horarios">Horarios</string>
+    <string name="subtitle">NOV 16 - 17 EXPO REFORMA CDMX</string>
+    <string name="event_title">.     HATSUKOI     .</string>
+    <string name="patrocinadores">Patrocinadores</string>
+    <string name="noticias_recientes">Noticias recientes</string>
+    <string name="menu_principal">Menu Principal</string>
+    <string name="name">Nombre</string>
+    <string name="tipopagos">"Tipos de pago disponibles "</string>
+    <string name="mesas">Mesas</string>
+    <string name="busqueda">Busqueda</string>
+    <string name="mesa_num">Mesa Num</string>
+    <string name="colectivo_nombre">Colectivo Nombre</string>
 </resources>

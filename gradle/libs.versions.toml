@@ -40,7 +40,7 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 roundedimageview = { module = "com.makeramen:roundedimageview", version.ref = "roundedimageview" }
-
+lottie = "com.airbnb.android:lottie:6.1.0"
 
 
 [plugins]

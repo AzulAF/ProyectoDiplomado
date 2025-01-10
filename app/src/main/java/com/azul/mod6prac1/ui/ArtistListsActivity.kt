@@ -1,10 +1,15 @@
 package com.azul.mod6prac1.ui
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.azul.mod6prac1.R
+import com.azul.mod6prac1.data.network.NetworkUtils
 import com.azul.mod6prac1.databinding.ActivityMain2Binding
 import com.azul.mod6prac1.ui.fragments.ArtistListFragment
+import com.google.android.material.snackbar.Snackbar
 
 //import com.azul.mod6prac1.ui.fragments.ItemListFragment
 
@@ -15,6 +20,7 @@ class ArtistListsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
+        checkNetworkAndNotify(this)
         //Mostramos el fragment inicial ItemsListFragment
         if(savedInstanceState == null){
             supportFragmentManager.beginTransaction()
@@ -22,4 +28,17 @@ class ArtistListsActivity : AppCompatActivity() {
                 .commit()
         }
     }
+
+    fun checkNetworkAndNotify(context: Context) {
+        if (!NetworkUtils.isNetworkAvailable(context)) {
+            Toast.makeText(context, "No tienes conexión a Internet.", Toast.LENGTH_LONG).show()
+        } else if (NetworkUtils.isUsingMobileData(context)) {
+            Snackbar.make(
+                (context as Activity).findViewById(android.R.id.content),
+                "Estás utilizando datos móviles.",
+                Snackbar.LENGTH_LONG
+            ).show()
+        }
+    }
+
 }
