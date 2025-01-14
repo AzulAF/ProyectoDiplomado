@@ -5,7 +5,7 @@ Esta aplicación está diseñada para eventos, con el propósito de promocionar 
 # Descripción del Logo y lo que Representa
 
 El logo de la aplicación simboliza el evento al que se hace referencia dentro de la plataforma. Su diseño refleja la idea de que la aplicación proporcionará toda la información necesaria para facilitar la navegación y búsqueda de los usuarios dentro del evento, mejorando así su experiencia.
-![eventicon](https://github.com/user-attachments/assets/43085eeb-b0c5-42ca-b91b-4d64b9a20ed4)
+<p align="center"><img src="https://github.com/user-attachments/assets/43085eeb-b0c5-42ca-b91b-4d64b9a20ed4" alt="" width="300"/></p>
 
 # Justificación de la Elección del Dispositivo, Versión del Sistema Operativo y las Orientaciones Soportadas
 
