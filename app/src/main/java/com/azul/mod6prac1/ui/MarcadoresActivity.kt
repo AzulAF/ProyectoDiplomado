@@ -5,12 +5,6 @@ import android.content.Context
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
@@ -23,7 +17,7 @@ import com.azul.mod6prac1.data.network.NetworkUtils
 import com.azul.mod6prac1.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+class MarcadoresActivity : AppCompatActivity() {
 
     private var items: MutableList<ItemEntity> = mutableListOf()
     private lateinit var repository: ItemRepository
@@ -50,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         //El recyclerview
         binding.rvItems.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
+            layoutManager = LinearLayoutManager(this@MarcadoresActivity)
             adapter = itemsAdapter
         }
 

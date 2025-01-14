@@ -15,6 +15,7 @@ import com.azul.mod6prac1.data.network.NetworkUtils
 import com.azul.mod6prac1.data.network.model.ImageDto
 import com.azul.mod6prac1.databinding.ActivityInitialBinding
 import com.azul.mod6prac1.ui.adapters.ImageGalleryAdapterBasic
+import com.azul.mod6prac1.ui.fragments.ArtistListFragment
 import com.azul.mod6prac1.ui.fragments.ImageDetailFragment
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
@@ -27,21 +28,24 @@ class InitialActivity : AppCompatActivity() {
     private lateinit var repository: ImagesRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        checkNetworkAndNotify(this)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         binding = ActivityInitialBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        checkNetworkAndNotify(this)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 //Marcadores
         binding.buttonFirst.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, MarcadoresActivity::class.java)
             startActivity(intent)
         }
 //Lista de artistas completa
         binding.buttonSecond.setOnClickListener {
-            val intent = Intent(this, ArtistListsActivity::class.java)
-            startActivity(intent)
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, ArtistListFragment())
+                .addToBackStack(null)
+                .commit()
         }
+
         val linksMap = mapOf(
             binding.imageButtonAvisos to "https://private-a4ba8-dadmtarea.apiary-mock.com/event/avisos",
             binding.imageButtonTalleres to "https://private-a4ba8-dadmtarea.apiary-mock.com/event/talleres",
