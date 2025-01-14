@@ -82,7 +82,7 @@ class ItemDialog (
 
             //IMAGE NAME
         }
-        //SPINNER FUNCTIONALITY
+        //SPINNER FUNCTIONALITY si funciona
         binding.spinnerMerchType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 selectedOptionSpinnerType = parent.getItemAtPosition(position).toString()
@@ -134,11 +134,7 @@ class ItemDialog (
                         val result = async {
                             repository.insertItem(item)
                         }
-
-                        //Con esto nos esperamos a que se termine esta acción antes de ejecutar lo siguiente
                         result.await()
-
-                        //Con esto mandamos la ejecución de message y updateUI al hilo principal
                         withContext(Dispatchers.Main){
                             message(getString(R.string.savedItem))
                             updateUI()
@@ -174,12 +170,9 @@ class ItemDialog (
                         val result = async {
                             repository.updateItem(item)
                         }
-
                         result.await()
-
                         withContext(Dispatchers.Main) {
                             message(getString(R.string.updatedItem))
-
                             updateUI()
                         }
                     }
@@ -260,7 +253,6 @@ class ItemDialog (
 
 
 //A FUTURO, UTILIZAR EL NUMERO DE MESA PARA TRAER EL NOMBRE DEL ARTISTA
-    //Para después
 
     private fun setupTextWatcher(vararg textFields: TextInputEditText){
         val textWatcher = object: TextWatcher{

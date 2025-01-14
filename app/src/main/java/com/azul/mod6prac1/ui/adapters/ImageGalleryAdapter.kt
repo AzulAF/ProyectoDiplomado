@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.azul.mod6prac1.R
 import com.azul.mod6prac1.data.network.model.ArtistDto
 import com.azul.mod6prac1.data.network.model.ImageDto
-import com.azul.mod6prac1.data.network.model.ItemDto
 import com.azul.mod6prac1.databinding.ArtistElementBinding
 import com.azul.mod6prac1.databinding.ImagesElementBinding
 import com.azul.mod6prac1.ui.adapters.ImageViewholder
@@ -34,11 +33,10 @@ class ImageGalleryAdapter(
 
     class ImageViewHolder(private val binding: ImagesElementBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(imageDto: ImageDto) {
-            // Cargar la imagen desde la URL utilizando Glide
             Glide.with(binding.root.context)
-                .load(imageDto.imagen) // URL de la imagen
-                .placeholder(R.drawable.artist_placeholder) // Imagen de carga // Imagen en caso de error
-                .into(binding.galleryImage) // `imageView` del layout
+                .load(imageDto.imagen)
+                .placeholder(R.drawable.artist_placeholder)
+                .into(binding.galleryImage)
         }
     }
 }

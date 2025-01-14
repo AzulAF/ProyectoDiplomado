@@ -115,4 +115,8 @@
     <string name="busqueda">Busqueda</string>
     <string name="mesa_num">Mesa Num</string>
     <string name="colectivo_nombre">Colectivo Nombre</string>
+    <string name="NoDisponible">No disponible</string>
+    <string name="SinConexion">No tienes conexion a internet</string>
+    <string name="DatosMoviles">Estas usando datos moviles</string>
+    <string name="ErrorCargarDatos">Error al cargar los datos</string>
 </resources>

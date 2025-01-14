@@ -19,7 +19,6 @@ class ImageDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        checkNetworkAndNotify(this)
         arguments?.let {
             images = it.getParcelableArrayList(ARG_IMAGES) ?: emptyList()
         }
@@ -30,11 +29,11 @@ class ImageDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_image_detail, container, false)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
+        checkNetworkAndNotify(view)
 
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = ImageGalleryAdapter(images) { image ->
-            // Aquí puedes agregar funcionalidad para el click en una imagen
         }
 
         return view
@@ -50,17 +49,26 @@ class ImageDetailFragment : Fragment() {
         }
     }
 
-    fun checkNetworkAndNotify(fragment: Fragment) {
-        val context = fragment.requireContext()
-        if (!NetworkUtils.isNetworkAvailable(context)) {
-            Toast.makeText(context, "No tienes conexión a Internet.", Toast.LENGTH_LONG).show()
-        } else if (NetworkUtils.isUsingMobileData(context)) {
-            Snackbar.make(
-                fragment.requireView(), // Vista raíz del fragmento
-                "Estás utilizando datos móviles.",
-                Snackbar.LENGTH_LONG
-            ).show()
+    private fun checkNetworkAndNotify(view: View) {
+        val context = requireContext()
+        when {
+            !NetworkUtils.isNetworkAvailable(context) -> {
+                Snackbar.make(
+                    view,
+                    requireContext().getString(R.string.SinConexion),
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
+            NetworkUtils.isUsingMobileData(context) -> {
+                Snackbar.make(
+                    view,
+                    requireContext().getString(R.string.DatosMoviles)
+                    ,
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
         }
     }
-
 }
+
+

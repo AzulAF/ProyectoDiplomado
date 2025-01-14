@@ -31,11 +31,11 @@ class ArtistListsActivity : AppCompatActivity() {
 
     fun checkNetworkAndNotify(context: Context) {
         if (!NetworkUtils.isNetworkAvailable(context)) {
-            Toast.makeText(context, "No tienes conexión a Internet.", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, binding.root.context.getString(R.string.SinConexion), Toast.LENGTH_LONG).show()
         } else if (NetworkUtils.isUsingMobileData(context)) {
             Snackbar.make(
                 (context as Activity).findViewById(android.R.id.content),
-                "Estás utilizando datos móviles.",
+                binding.root.context.getString(R.string.DatosMoviles),
                 Snackbar.LENGTH_LONG
             ).show()
         }

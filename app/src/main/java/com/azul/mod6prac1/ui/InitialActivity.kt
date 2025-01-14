@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.azul.mod6prac1.R
 import com.azul.mod6prac1.application.ItemsDPApp
@@ -27,6 +28,7 @@ class InitialActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         checkNetworkAndNotify(this)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         binding = ActivityInitialBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -65,13 +67,11 @@ class InitialActivity : AppCompatActivity() {
                 response: Response<MutableList<ImageDto>>
             ) {
                 response.body()?.let{ images ->
-
                     //Le pasamos los juegos al recycler view y lo instanciamos
                     binding.rvGallery.apply {
                         layoutManager = LinearLayoutManager(this@InitialActivity, LinearLayoutManager.HORIZONTAL, false)
                         //layoutManager = GridLayoutManager(requireContext(), 3)
                         adapter = ImageGalleryAdapterBasic(images) { image ->
-                            // Trigger the action to view the image details
                             image.id?.let { id ->
 //                                supportFragmentManager.beginTransaction()
 //                                    .replace(R.id.fragment_container, ImageDetailFragment.newInstance(id))
@@ -83,7 +83,7 @@ class InitialActivity : AppCompatActivity() {
                 }
             }
             override fun onFailure(p0: Call<MutableList<ImageDto>>, p1: Throwable) {
-                Toast.makeText(this@InitialActivity,"Error, no hay conexion",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@InitialActivity,binding.root.context.getString(R.string.SinConexion),Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -108,18 +108,18 @@ class InitialActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<MutableList<ImageDto>>, t: Throwable) {
-                Toast.makeText(this@InitialActivity, "Error al cargar los datos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@InitialActivity, binding.root.context.getString(R.string.ErrorCargarDatos), Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     fun checkNetworkAndNotify(context: Context) {
         if (!NetworkUtils.isNetworkAvailable(context)) {
-            Toast.makeText(context, "No tienes conexión a Internet.", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, binding.root.context.getString(R.string.SinConexion), Toast.LENGTH_LONG).show()
         } else if (NetworkUtils.isUsingMobileData(context)) {
             Snackbar.make(
                 (context as Activity).findViewById(android.R.id.content),
-                "Estás utilizando datos móviles.",
+                binding.root.context.getString(R.string.DatosMoviles),
                 Snackbar.LENGTH_LONG
             ).show()
         }

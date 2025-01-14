@@ -1,11 +1,8 @@
 package com.azul.mod6prac1.data.network
-import com.azul.mod6prac1.data.network.model.ArtistDetailDto
-import com.azul.mod6prac1.data.network.model.ArtistDto
 import com.azul.mod6prac1.data.network.model.ImageDto
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
 import retrofit2.http.Url
 
 interface ImageApi {

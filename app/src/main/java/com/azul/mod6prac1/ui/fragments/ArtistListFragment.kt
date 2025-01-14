@@ -68,6 +68,7 @@ class ArtistListFragment : Fragment() {
     }
 
     private fun setupFilters() {
+        //El adapter no funciona si estos textos se mandan a string
         val opcionesTipo = listOf("Piso", "Sellos")
         val adapterTipo = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, opcionesTipo)
         adapterTipo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -121,7 +122,7 @@ class ArtistListFragment : Fragment() {
             override fun onFailure(call: Call<MutableList<ArtistDto>>, t: Throwable) {
                 Toast.makeText(
                     requireContext(),
-                    "Error: No hay conexión disponible",
+                    binding.root.context.getString(R.string.SinConexion),
                     Toast.LENGTH_SHORT
                 ).show()
                 binding.pbLoading.visibility = View.GONE
@@ -187,11 +188,11 @@ class ArtistListFragment : Fragment() {
     fun checkNetworkAndNotify(fragment: Fragment) {
         val context = fragment.requireContext()
         if (!NetworkUtils.isNetworkAvailable(context)) {
-            Toast.makeText(context, "No tienes conexión a Internet.", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, binding.root.context.getString(R.string.SinConexion), Toast.LENGTH_LONG).show()
         } else if (NetworkUtils.isUsingMobileData(context)) {
             Snackbar.make(
                 fragment.requireView(), // Vista raíz del fragmento
-                "Estás utilizando datos móviles.",
+                binding.root.context.getString(R.string.DatosMoviles),
                 Snackbar.LENGTH_LONG
             ).show()
         }

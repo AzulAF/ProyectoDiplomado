@@ -59,8 +59,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun click(view: View) {
-        //Manejamos el click del floating action button
-
         val dialog = ItemDialog(updateUI = {
             updateUI()
         }, message = { text ->
@@ -82,7 +80,6 @@ class MainActivity : AppCompatActivity() {
             .setTextColor(getColor(R.color.white))
             .setBackgroundTint(getColor(R.color.snackbar))
             .show()
-        //#9E1734
     }
 
     private fun updateUI(){
@@ -97,11 +94,11 @@ class MainActivity : AppCompatActivity() {
 
     fun checkNetworkAndNotify(context: Context) {
         if (!NetworkUtils.isNetworkAvailable(context)) {
-            Toast.makeText(context, "No tienes conexión a Internet.", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, binding.root.context.getString(R.string.SinConexion), Toast.LENGTH_LONG).show()
         } else if (NetworkUtils.isUsingMobileData(context)) {
             Snackbar.make(
                 (context as Activity).findViewById(android.R.id.content),
-                "Estás utilizando datos móviles.",
+                binding.root.context.getString(R.string.DatosMoviles),
                 Snackbar.LENGTH_LONG
             ).show()
         }

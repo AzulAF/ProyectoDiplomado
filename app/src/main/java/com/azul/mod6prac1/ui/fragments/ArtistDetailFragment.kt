@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.azul.mod6prac1.R
 import com.azul.mod6prac1.application.ItemsDPApp
@@ -33,6 +34,7 @@ class ArtistDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         arguments?.let { args ->
             artistId = args.getString(ARTIST_ID)
@@ -44,7 +46,6 @@ class ArtistDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentArtistDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -58,9 +59,6 @@ class ArtistDetailFragment : Fragment() {
 
         artistId?.let{ id ->
             //Hago la llamada al endpoint para consumir los detalles del juego
-
-            //val call: Call<GameDetailDto> = repository.getGameDetail(id)
-
             //Para apiary
             val call: Call<ArtistDetailDto> = repository.getArtistDetailApiary(id)
 
@@ -69,7 +67,6 @@ class ArtistDetailFragment : Fragment() {
 
                     binding.apply {
                         pbLoading.visibility = View.GONE
-
                         //Aquí utilizamos la respuesta exitosa y asignamos los valores a las vistas
                         tvName.text = response.body()?.nombre
 
@@ -85,12 +82,12 @@ class ArtistDetailFragment : Fragment() {
                         tvPagosTEXT.text = binding.root.context.getString(R.string.pagosDisponibles)
 
                         if(response.body()?.pagotarjeta == "" || response.body()?.pagotarjeta == "NO"){
-                            tvTarjeta.text = "No disponible"
+                            tvTarjeta.text = binding.root.context.getString(R.string.NoDisponible)
                         } else{
                             tvTarjeta.text = response.body()?.pagotarjeta
                         }
                         if(response.body()?.transferecia !== "SI"){
-                            tvTransferencia.text = "No disponible"
+                            tvTransferencia.text = binding.root.context.getString(R.string.NoDisponible)
                         } else {
                             tvTransferencia.text = response.body()?.transferecia
                         }
@@ -130,11 +127,11 @@ class ArtistDetailFragment : Fragment() {
     fun checkNetworkAndNotify(fragment: Fragment) {
         val context = fragment.requireContext()
         if (!NetworkUtils.isNetworkAvailable(context)) {
-            Toast.makeText(context, "No tienes conexión a Internet.", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, binding.root.context.getString(R.string.SinConexion), Toast.LENGTH_LONG).show()
         } else if (NetworkUtils.isUsingMobileData(context)) {
             Snackbar.make(
                 fragment.requireView(), // Vista raíz del fragmento
-                "Estás utilizando datos móviles.",
+                binding.root.context.getString(R.string.DatosMoviles),
                 Snackbar.LENGTH_LONG
             ).show()
         }

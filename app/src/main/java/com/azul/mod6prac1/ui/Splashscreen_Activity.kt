@@ -1,5 +1,6 @@
 package com.azul.mod6prac1.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -15,13 +16,13 @@ import com.azul.mod6prac1.databinding.ActivitySplashscreenBinding
 
 private lateinit var binding: ActivitySplashscreenBinding
 
+@SuppressLint("CustomSplashScreen")
 class Splashscreen_Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Configurar el retraso para iniciar la siguiente actividad
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(this, InitialActivity::class.java))
             finish()

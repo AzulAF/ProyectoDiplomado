@@ -20,6 +20,7 @@ class ItemViewHolder (
             tvMerchType.text = item.type
             tvMerchPriority.text = item.merchPriority
             Log.d("SpinnerSelectionIMAGE", "Selected option: ${item.merchPriority}")
+            //No funcionan si el string se coloca dentro del archivo "strings"
             val imageResource = when (item.merchPriority){
                 "ALTA" -> R.drawable.priority1
                 "MEDIA"-> R.drawable.priority2

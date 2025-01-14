@@ -10,8 +10,6 @@ class ArtistAdapter(
     private val onArtistClicked: (ArtistDto) -> Unit
 ) : RecyclerView.Adapter<ArtistViewHolder>() {
 
-    // Lista original (sin filtrar)
-    private val originalArtists: List<ArtistDto> = artists.toList()
 
     // Lista mostrada en el RecyclerView
     private val displayedArtists: MutableList<ArtistDto> = artists.toMutableList()
@@ -39,13 +37,4 @@ class ArtistAdapter(
         notifyDataSetChanged() // Notificar cambios al adaptador
     }
 
-    // Método para mostrar la lista original completa
-    fun showOriginalList() {
-        updateList(originalArtists) // Usa updateList para restaurar la lista original
-    }
-
-    // Método para obtener la lista original (opcional, si necesitas acceso en el Fragment)
-    fun getOriginalList(): List<ArtistDto> {
-        return originalArtists
-    }
 }

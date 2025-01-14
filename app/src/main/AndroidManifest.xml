@@ -15,6 +15,7 @@
         android:roundIcon="@mipmap/ic_launchericon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mod6Prac1"
+        android:forceDarkAllowed="false"
         tools:targetApi="31">
         <activity
             android:name=".ui.Splashscreen_Activity"

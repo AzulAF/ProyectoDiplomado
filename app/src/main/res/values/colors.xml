@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="snackbar">#9E7817</color>
+    <color name="snackbar">#CA4C71</color>
     <color name="element_bg">#FAF0F9</color>
     <color name="red">#FF0000</color>
     <color name="subtitles">#ECA3C2</color>
