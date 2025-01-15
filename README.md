@@ -26,3 +26,23 @@ No se requieren credenciales para acceder a la aplicación. El acceso es libre y
 - **AndroidX**: Proporciona soporte y funcionalidades avanzadas para mejorar la compatibilidad y navegación dentro del sistema Android.
 - **Lottie**: Permite integrar animaciones interactivas en formato JSON, para crear experiencias visuales dinámicas.
 - **JUnit, Espresso, AndroidX JUnit**: Herramientas para realizar pruebas unitarias y de interfaz de usuario, asegurando la calidad y estabilidad de la aplicación.
+
+# Imagenes de la aplicación en uso
+Launchscreen // Splashscreen
+<p align="center"><img src="https://github.com/user-attachments/assets/94fd0bb2-9fc2-418b-b24e-0504ed996bdc" alt="" width="300"/></p>
+Vista inicial
+<p align="center"><img src="https://github.com/user-attachments/assets/4afcc743-e0b4-4815-8fd8-2e1724e5b445" alt="" width="300"/></p>
+Guardado de un marcador
+<p align="center"><img src="https://github.com/user-attachments/assets/8b2d8132-658a-4d8c-8a43-08545ba7bf97" alt="" width="300"/></p>
+Lista de marcadores guardados
+<p align="center"><img src="https://github.com/user-attachments/assets/d3495caa-0754-4ec8-98fe-b36319c3b330" alt="" width="300"/></p>
+Vista de las opciones principales ("Noticias")
+<p align="center"><img src="https://github.com/user-attachments/assets/12e0a5f0-e60e-4991-acd3-4adfc074049b" alt="" width="300"/></p>
+Vista de lista de artistas
+<p align="center"><img src="https://github.com/user-attachments/assets/34948533-6e42-44c2-909e-805ecf172ed7" alt="" width="300"/></p>
+
+
+
+
+
+
